@@ -8,11 +8,12 @@
     "lint": "vue-cli-service lint",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://xkevinlu.github.io/steo-academy-2",
   "dependencies": {
     "core-js": "^2.6.5",
     "gh-pages": "^2.0.1",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3",
+    "vuetify": "^1.5.14"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
@@ -45,5 +46,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "homepage": "https://xkevinlu.github.io/steo-academy-2"
 }
