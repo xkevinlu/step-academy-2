@@ -51,13 +51,9 @@
         </v-btn>
       </v-toolbar>
 
-      <v-content>
 
-        <v-container fluid>
           <router-view></router-view>
-        </v-container>
 
-      </v-content>
 
 
       <v-footer app></v-footer>
@@ -73,11 +69,11 @@ export default {
       drawer: null,
       menuItems: [
         {title:"Home", route: "/"},
-        {title:"Waltz", route: "/waltz"},
-        {title:"Tango", route: "/tango"},
-        {title:"Viennese Waltz", route: "/vwaltz"},
-        {title:"Foxtrot", route: "/foxtrot"},
-        {title:"Quickstep", route: "/quickstep"},
+        {title:"Waltz", route: "/waltz/"},
+        {title:"Tango", route: "/tango/"},
+        {title:"Viennese Waltz", route: "/vwaltz/"},
+        {title:"Foxtrot", route: "/foxtrot/"},
+        {title:"Quickstep", route: "/quickstep/"},
       ],
     }
   }

@@ -1,9 +1,7 @@
 <template>
   <div class="about">
-    <h1>Waltz - Select a Figure</h1>
-    <Player
-
-    ></Player>
+    <h4>Waltz</h4>
+    <router-view></router-view>
     <SyllabusList :All = "All"></SyllabusList>
   </div>
 </template>
@@ -11,16 +9,201 @@
 
 <script>
 import SyllabusList from '../components/SyllabusList.vue'
-import Player from '../components/Player.vue'
 
 export default {
   name: 'App',
-  components: {SyllabusList, Player},
+  components: {SyllabusList},
   data () {
     return {
+      figure: '',
       drawer: null,
       waltzNewcomer: [
-        {title: 'RF Closed Change'},
+        {title: 'RF Closed Change',
+          commenceFacing: 135,
+          startFoot: 'RFF',
+          endFoot: 'LFF',
+          steps: [
+            {
+              count:0,
+              instructionBoth:'Prepare to move DW',
+              instructionMan:'Begin on LF',
+              instructionLady:'Begin on RF',
+              ml:{
+                changeX:0,
+                changeY:0,
+                changeRotation:0,
+                changeOpacity:1,
+              },
+              mr:{
+                changeX:0,
+                changeY:0,
+                changeRotation:0,
+                changeOpacity:-0.8,
+              },
+              ll:{
+                changeX:0,
+                changeY:0,
+                changeRotation:0,
+                changeOpacity:-0.8,
+              },
+              lr:{
+                changeX:0,
+                changeY:0,
+                changeRotation:0,
+                changeOpacity:1,
+              },
+            },
+            {
+              count:1,
+              instructionBoth:'Moving DW',
+              instructionMan:'RF forward (HT)',
+              instructionLady:'LF back (TH)',
+              ml:{
+                changeRotation:0,
+                changeOpacity:-0.8,
+              },
+              mr:{
+                changeY:-80,
+                changeOpacity:0.8,
+                footwork:'HT',
+              },
+              ll:{
+                changeY:-80,
+                changeOpacity:0.8,
+                footwork:'TH',
+              },
+              lr:{
+                changeOpacity:-0.8,
+              },
+            },
+            {
+              count:1.5,
+              instructionBoth:'Moving DW',
+              instructionMan:'RF forward (HT)',
+              instructionLady:'LF back (TH)',
+              ml:{
+                changeX:0,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0.8,
+                transformOrigin:'center',
+                transition:'all 2s',
+                footwork:'HT',
+              },
+              mr:{
+                changeX:0,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0.8,
+                transformOrigin:'center',
+                transition:null,
+                footwork:null,
+              },
+              ll:{
+                changeX:0,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0.8,
+                transformOrigin:'center',
+                transition:null,
+                footwork:null,
+              },
+              lr:{
+                changeX:0,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0.8,
+                transformOrigin:'center',
+                transition:'all 2s',
+                footwork:'TH',
+              },
+            },
+            {
+              count:2,
+              instructionBoth:'Moving DW',
+              instructionMan:'RF forward (HT)',
+              instructionLady:'LF back (TH)',
+              ml:{
+                changeX:-80,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0,
+                transformOrigin:'center',
+                transition:'all 2s',
+                footwork:'HT',
+              },
+              mr:{
+                changeX:0,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0,
+                transformOrigin:'center',
+                transition:'all 2s',
+                footwork:'HT',
+              },
+              ll:{
+                changeX:0,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0,
+                transformOrigin:'center',
+                transition:'all 2s',
+                footwork:'HT',
+              },
+              lr:{
+                changeX:-80,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0,
+                transformOrigin:'center',
+                transition:'all 2s',
+                footwork:'HT',
+              },
+            },
+            {
+              count:3,
+              instructionBoth:'Moving DW',
+              instructionMan:'RF forward (HT)',
+              instructionLady:'LF back (TH)',
+              ml:{
+                changeX:-80,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0,
+                transformOrigin:'center',
+                transition:'all 2s',
+                footwork:'HT',
+              },
+              mr:{
+                changeX:-80,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0,
+                transformOrigin:'center',
+                transition:'all 2s',
+                footwork:'HT',
+              },
+              ll:{
+                changeX:-80,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0,
+                transformOrigin:'center',
+                transition:'all 2s',
+                footwork:'HT',
+              },
+              lr:{
+                changeX:-80,
+                changeY:-80,
+                changeRotation:0,
+                changeOpacity:0,
+                transformOrigin:'center',
+                transition:'all 2s',
+                footwork:'HT',
+              },
+            }
+          ],
+        },
         {title: 'LF Closed Change'},
         {title: 'Natural Turn'},
         {title: 'Reverse Turn'},
@@ -69,27 +252,10 @@ export default {
         {title:'Silver', figures: this.waltzSilver},
         {title:'Gold', figures: this.waltzGold},
       ];
-    }
-  },
-  methods: {
-    levelColor(item) {
-        console.log(item.title);
-        switch (item.title)
-        {
-            case "Newcomer":
-                return "green lighten-2";
-                break;
-            case "Bronze":
-                return "brown";
-                break;
-            case "Silver":
-                return "blue-grey lighten-3";
-                break;
-            case "Gold":
-                return "yellow darken-3";
-                break;
-              }
     },
+    AllOneList(){
+      return this.waltzNewcomer.concat(this.waltzBronze).concat(this.waltzSilver).concat(this.waltzGold);
+    }
   },
 }
 

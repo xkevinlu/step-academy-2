@@ -1,6 +1,7 @@
 <template>
   <div class="about">
-    <h1>Syllabus Tango Figures</h1>
+    <h4>Tango</h4>
+    <router-view></router-view>
     <SyllabusList :all="All"></SyllabusList>
   </div>
 </template>
@@ -64,27 +65,10 @@ export default {
         {title:'Gold', figures: this.Gold},
       ];
     },
-  },
-  methods: {
-    levelColor(item) {
-        console.log(item.title);
-        switch (item.title)
-        {
-            case "Newcomer":
-                return "green lighten-2";
-                break;
-            case "Bronze":
-                return "brown";
-                break;
-            case "Silver":
-                return "blue-grey lighten-3";
-                break;
-            case "Gold":
-                return "yellow darken-3";
-                break;
-              }
+    AllOneList(){
+      return this.Newcomer.concat(this.Bronze).concat(this.Silver).concat(this.Gold);
     }
-  }
+  },
 }
 
 </script>

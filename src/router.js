@@ -14,42 +14,63 @@ export default new Router({
     {
       path: '/waltz',
       name: 'waltz',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/waltz.vue')
+      component: () => import('./views/waltz.vue'),
+      children: [
+        {
+          path: '/waltz/:figure',
+          name: 'waltz-figures',
+          component: () => import(`./components/Player.vue`)
+        },
+      ]
     },
     {
       path: '/tango',
       name: 'tango',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/tango.vue')
+      component: () => import('./views/tango.vue'),
+      children: [
+        {
+          path: '/tango/:figure',
+          name: 'tango-figures',
+          component: () => import('./components/Player.vue')
+        },
+      ]
     },
     {
       path: '/vwaltz',
       name: 'vwaltz',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/vwaltz.vue')
+      component: () => import('./views/vwaltz.vue'),
+      children: [
+        {
+          path: '/vwaltz/:figure',
+          name: 'vwaltz-figures',
+          component: () => import('./components/Player.vue')
+        },
+      ]
     },
     {
       path: '/foxtrot',
       name: 'foxtrot',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/foxtrot.vue')
+      component: () => import('./views/foxtrot.vue'),
+      children: [
+        {
+          path: '/foxtrot/:figure',
+          name: 'foxtrot-figures',
+          component: () => import('./components/Player.vue')
+        },
+      ]
     },
     {
       path: '/quickstep',
       name: 'quickstep',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/quickstep.vue')
-    }
+      component: () => import('./views/quickstep.vue'),
+      children: [
+        {
+          path: '/quickstep/:figure',
+          name: 'quickstep-figures',
+          component: () => import('./components/Player.vue')
+        },
+      ]
+    },
+
   ]
 })

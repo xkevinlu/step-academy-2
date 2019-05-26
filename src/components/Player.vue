@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>{{figureName($route.params.figure)}}</h1>
     <div class="top-controls">
         <v-btn icon @click="rotation -= 45">
           <v-icon>rotate_left</v-icon>
@@ -28,9 +29,12 @@
           <v-icon :color="man && lady ? 'purple' : ''">wc</v-icon>
         </v-btn>
     </div>
+
+
   <div class="player">
     <div class="perspective" :style="{ transform: `rotate(${rotation}deg) scale(${zoom})`}">
       <div class="contents">
+
         <div class="footarea ml" :style="mlStyle">
           <div v-show='man' class="foot man">ml</div>
         </div>
@@ -46,6 +50,8 @@
       </div>
     </div>
   </div>
+
+
   <div class="controls">
     <v-slider class="slider"
       ticks
@@ -56,7 +62,7 @@
       <h5 class="headline">{{instruction}}</h5>
     </div>
     <div class="seek">
-      <v-btn icon @click="step++" :disabled="step >= maxStep">
+      <v-btn icon @click="step++" >
         <i class="control fas fa-step-backward"></i>
       </v-btn>
 
@@ -66,14 +72,14 @@
       </v-btn>
 
       <v-btn icon>
-        <i class="fas fa-play large" @click="play()"></i>
+        <i class="fas large" :class="{'fa-play' : !isPlaying, 'fa-pause' : isPlaying}" @click="play()"></i>
       </v-btn>
 
       <v-btn icon @click="step++" :disabled="step >= maxStep">
         <i class="control fas fa-forward"></i>
       </v-btn>
 
-      <v-btn icon @click="step++" :disabled="step >= maxStep">
+      <v-btn icon @click="">
         <i class="control fas fa-step-forward"></i>
       </v-btn>
     </div>
@@ -86,21 +92,51 @@
 <script>
 export default {
   name: 'Player',
-  props: {
-    instruction: {default: "Select a Figure"},
-    count: { default: 3},
-    figure: {default: null},
+  data() {
+    return {
+      rotation:0,
+      zoom:1,
+      man: true,
+      lady: true,
+      step:0,
+      instruction: "Select a Figure",
+      isPlaying: false,
+      playTimer: null,
+    }
   },
   watch: {
-    zoom: function() {
+    zoom() {
       if ( this.zoom < 0.5 ) {
         this.zoom = 0.5;
       } else if (this.zoom > 1.5) {
         this.zoom = 1.5;
       }
+    },
+    figure() {
+        this.step = 0;
     }
   },
   methods: {
+    play() {
+        this.isPlaying = !this.isPlaying;
+        if (this.step == this.maxStep) {
+          this.step = 0;
+          this.playTimer = setInterval(this.next, 1500);
+        } else if (this.isPlaying) {
+          this.playTimer = setInterval(this.next, 1500);
+          this.next();
+      } else {
+          clearInterval(this.playTimer);
+      }
+    },
+    next() {
+      if (this.step < this.maxStep){
+        this.step++;
+      } else {
+        clearInterval(this.playTimer);
+        this.isPlaying = false;
+      }
+    },
     setManOn() {
       this.man = true;
       this.lady = false;
@@ -112,80 +148,84 @@ export default {
     setBothOn() {
       this.man = true;
       this.lady = true;
-    }
-  },
-  data() {
-    return {
-      rotation:0,
-      zoom:1,
-      man: true,
-      lady: true,
-      step:0,
+    },
+    figureName(route) {
+      return (route == undefined) ? 'Select a figure' : route.replace(/-+/g, ' ');
     }
   },
   computed: {
+    figure() {
+      let id = this.$route.params.figure;
+      let searchString = id.replace(/-+/g, ' ');
+      let figure = this.$parent.AllOneList.find(x => x.title == searchString);
+        return figure;
+    },
     maxStep() {
-      return (this.figure != null) ? this.figure.steps.length-1 : 10;
+      return (this.figure.steps != undefined) ? this.figure.steps.length-1 : 10;
     },
     mlStyle() {
-      if (this.figure === null) {
-        return null;
-      } else {
-        let ml = this.figure.steps[this.step].ml;
-        let x = (ml.changeX != undefined) ? ml.changeX : 0;
-        let y = (ml.changeY != undefined) ? ml.changeY : 0;
-        let turn = (ml.changeRotation != undefined) ? ml.changeRotation : 0;
-        let opacity = (ml.opacity != undefined) ? ml.opacity : 1;
+        if (this.figure.steps != undefined) {
+          let foot = this.figure.steps[this.step].ml;
+          let x = (foot.changeX != undefined) ? foot.changeX : 0;
+          let y = (foot.changeY != undefined) ? foot.changeY : 0;
+          let turn = (foot.changeRotation != undefined) ? foot.changeRotation : 0;
+          let opacity = (foot.opacity != undefined) ? foot.opacity : 1;
+
         return {
           transform: `translate(${x}px, ${y}px) rotate(${turn})`,
           opacity: `${opacity}`
         };
-      };
+      } else {
+        return null;
+      }
     },
     mrStyle() {
-      if (this.figure === null) {
-        return null;
-      } else {
-      let mr = this.figure.steps[this.step].mr;
-      let x = (mr.changeX != undefined) ? mr.changeX : 0;
-      let y = (mr.changeY != undefined) ? mr.changeY : 0;
-      let turn = (mr.changeRotation != undefined) ? mr.changeRotation : 0;
-      let opacity = (mr.opacity != undefined) ? mr.opacity : 1;
+      if (this.figure.steps != undefined) {
+        let foot = this.figure.steps[this.step].mr;
+        let x = (foot.changeX != undefined) ? foot.changeX : 0;
+        let y = (foot.changeY != undefined) ? foot.changeY : 0;
+        let turn = (foot.changeRotation != undefined) ? foot.changeRotation : 0;
+        let opacity = (foot.opacity != undefined) ? foot.opacity : 1;
+
       return {
         transform: `translate(${x}px, ${y}px) rotate(${turn})`,
         opacity: `${opacity}`
       };
-      }
+    } else {
+      return null;
+    }
     },
 
     llStyle() {
-      if (this.figure === null) {
-        return null;
-      } else {
-        let ll = this.figure.steps[this.step].ll;
-        let x = (ll.changeX != undefined) ? ll.changeX : 0;
-        let y = (ll.changeY != undefined) ? ll.changeY : 0;
-        let turn = (ll.changeRotation != undefined) ? ll.changeRotation : 0;
-        let opacity = (ll.opacity != undefined) ? ll.opacity : 1;
-        return {
-          transform: `translate(${x}px, ${y}px) rotate(${turn})`,
-          opacity: `${opacity}`
-        };
-      }
+      if (this.figure.steps != undefined) {
+        let foot = this.figure.steps[this.step].ll;
+        let x = (foot.changeX != undefined) ? foot.changeX : 0;
+        let y = (foot.changeY != undefined) ? foot.changeY : 0;
+        let turn = (foot.changeRotation != undefined) ? foot.changeRotation : 0;
+        let opacity = (foot.opacity != undefined) ? foot.opacity : 1;
+
+      return {
+        transform: `translate(${x}px, ${y}px) rotate(${turn})`,
+        opacity: `${opacity}`
+      };
+    } else {
+      return null;
+    }
     },
     lrStyle() {
-      if (this.figure === null) {
-        return null;
+      if (this.figure.steps != undefined) {
+        let foot = this.figure.steps[this.step].ml;
+        let x = (foot.changeX != undefined) ? foot.changeX : 0;
+        let y = (foot.changeY != undefined) ? foot.changeY : 0;
+        let turn = (foot.changeRotation != undefined) ? foot.changeRotation : 0;
+        let opacity = (foot.opacity != undefined) ? foot.opacity : 1;
+
+      return {
+        transform: `translate(${x}px, ${y}px) rotate(${turn})`,
+        opacity: `${opacity}`
+      };
       } else {
-        let lr = this.figure.steps[this.step].lr;
-        let x = (lr.changeX != undefined) ? lr.changeX : 0;
-        let y = (lr.changeY != undefined) ? lr.changeY : 0;
-        let turn = (lr.changeRotation != undefined) ? lr.changeRotation : 0;
-        let opacity = (lr.opacity != undefined) ? lr.opacity : 1;
-        return {
-          transform: `translate(${x}px, ${y}px) rotate(${turn})`,
-          opacity: `${opacity}`
-        };
+          return null;
       }
     },
   }
