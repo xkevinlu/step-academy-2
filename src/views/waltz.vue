@@ -222,6 +222,7 @@ export default {
                 transY:-80,
                 rotation:0,
                 opacity:1,
+                footwork: 'T',
               },
               mr:{
                 transX:0,
@@ -240,6 +241,7 @@ export default {
                 transY:-80,
                 rotation:180,
                 opacity:1,
+                footwork: 'T',
               },
             },
             {
@@ -258,12 +260,14 @@ export default {
                 transY:-80,
                 rotation:0,
                 opacity:1,
+                footwork: 'T',
               },
               ll:{
                 transX:-80,
                 transY:-80,
                 rotation:180,
                 opacity:1,
+                footwork: 'T',
               },
               lr:{
                 transX:-80,
