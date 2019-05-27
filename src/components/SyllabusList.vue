@@ -20,6 +20,7 @@
                 v-for="subItem in item.figures"
                 :key="subItem.title"
                 :to="figureRoute(subItem.title)"
+                @click="$emit('figurePicked')"
               >
                 <v-list-tile-content>
                   <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>

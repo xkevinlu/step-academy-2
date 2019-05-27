@@ -55,8 +55,6 @@
           <router-view></router-view>
 
 
-
-      <v-footer app></v-footer>
     </v-app>
   </div>
 </template>
