@@ -149,12 +149,6 @@ export default {
       step:0,
       isPlaying: false,
       playTimer: null,
-      isActive: {
-        ml: [false,false],
-        mr: [false,false],
-        ll: [false,false],
-        lr: [false,false],
-      },
     }
   },
   watch: {
@@ -168,11 +162,6 @@ export default {
     figure() {
         this.step = 0;
     },
-    step () {
-      // this.isActive.mr[0] = true;
-      // this.isActive.mr[1] = true;
-      console.log(this.figure.steps[this.step].mr.footwork);
-    }
   },
   methods: {
     wait(ms) {
@@ -219,6 +208,7 @@ export default {
         y: (data.transY != undefined) ? data.transY : 0,
         rotation: (data.rotation != undefined) ? data.rotation : 0,
         op: (data.opacity != undefined) ? data.opacity : 1,
+        origin: (data.transOrigin != undefined) ? data.transOrigin : "center 40px",
       }
     }
   },
@@ -251,8 +241,11 @@ export default {
         let foot = this.updateFoot(this.figure.steps[this.step].ml);
         return {
           transform: `translate(${foot.x}px, ${foot.y}px) rotate(${foot.rotation}deg)`,
-          opacity: foot.op
+          opacity: foot.op,
+          transformOrigin: foot.origin,
         };
+      } else {
+        return null
       }
       },
     mrStyle() {
@@ -260,8 +253,11 @@ export default {
         let foot = this.updateFoot(this.figure.steps[this.step].mr);
         return {
           transform: `translate(${foot.x}px, ${foot.y}px) rotate(${foot.rotation}deg)`,
-          opacity: foot.op
+          opacity: foot.op,
+          transformOrigin: foot.origin,
         };
+      } else {
+        return null
       }
     },
 
@@ -270,8 +266,11 @@ export default {
         let foot = this.updateFoot(this.figure.steps[this.step].ll);
         return {
           transform: `translate(${foot.x}px, ${foot.y}px) rotate(${foot.rotation}deg)`,
-          opacity: foot.op
+          opacity: foot.op,
+          transformOrigin: foot.origin,
         };
+      } else {
+        return null
       }
     },
     lrStyle() {
@@ -279,8 +278,11 @@ export default {
         let foot = this.updateFoot(this.figure.steps[this.step].lr);
         return {
           transform: `translate(${foot.x}px, ${foot.y}px) rotate(${foot.rotation}deg)`,
-          opacity: foot.op
+          opacity: foot.op,
+          transformOrigin: foot.origin,
         };
+      } else {
+        return null
       }
     },
     mlhFootwork() {
@@ -421,6 +423,7 @@ export default {
   align-items:center;
   justify-content:center;
   transition: all 1.5s;
+  transform-origin: "center 40px";
 }
 
 .foot {
@@ -462,13 +465,13 @@ export default {
 .ml {
   position: absolute;
   left: 30%;
-  top: 50%;
+  top: 45%;
 }
 
 .mr {
   position: absolute;
   left:38%;
-  top:50%;
+  top:45%;
 }
 
 .ll {
