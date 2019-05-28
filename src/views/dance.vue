@@ -1,8 +1,9 @@
 <template>
   <div>
-    <h4>Waltz</h4>
-    <a><h1 @click="selectDance = true">{{headerText}}</h1></a>
-    <router-view @nextFigure="selectNext = true" @prevFigure="selectPrev = true"></router-view>
+    <v-btn block flat large color="primary" @click="selectDance = true">
+      <h2>{{headerText}}</h2>
+     <v-icon right>arrow_drop_down</v-icon></v-btn>
+    <Player :figure="figure" @nextFigure="selectNext = true" @prevFigure="selectPrev = true"></Player>
 
     <v-dialog v-model="selectDance" scrollable fullscreen hide-overlay transition ='dialog-bottom-transition'>
         <v-card>
@@ -14,7 +15,7 @@
        </v-toolbar>
           <v-divider></v-divider>
           <v-card-text style="height: 100%;">
-              <SyllabusList :All = "All" @figurePicked="selectDance = false" ></SyllabusList>
+              <SyllabusList :All = "danceList" @figurePicked="selectDance = false" ></SyllabusList>
           </v-card-text>
           <v-divider></v-divider>
         </v-card>
@@ -23,7 +24,7 @@
 
     <v-dialog v-model="selectPrev" scrollable max-width="300px">
         <v-card>
-          <v-card-title>Select Preceding Figure:</v-card-title>
+          <v-card-title>Preceding {{figure.title}}:</v-card-title>
           <v-divider></v-divider>
           <v-card-text style="max-height: 400px;">
             <v-radio-group v-model="targetPrev" column>
@@ -40,7 +41,7 @@
 
     <v-dialog v-model="selectNext" scrollable max-width="300px">
         <v-card>
-          <v-card-title>Select Following Figure:</v-card-title>
+          <v-card-title>Following {{figure.title}}:</v-card-title>
           <v-divider></v-divider>
           <v-card-text style="max-height: 400px;">
             <v-radio-group v-model="targetNext" column>
@@ -60,33 +61,73 @@
 
 <script>
 import SyllabusList from '../components/SyllabusList.vue'
+import Player from '../components/Player.vue'
+
 
 export default {
-  name: 'App',
-  components: {SyllabusList},
+  name: 'dance',
+  components: {SyllabusList, Player},
   computed: {
-    headerText() {
-      return this.figure == undefined ? 'Select a Figure' : this.figure;
-    },
-    figureId () {
-       return this.$route.params.figure;
-    },
-    figure (){
-       return (this.figureId != undefined) ? this.$route.params.figure.replace(/-+/g, " ") : undefined;
+
+    figure(){
+       return (this.$route.params.figure) ?
+          this.dance.find(x =>
+            x.title == this.$route.params.figure.replace(/-+/g, " ")
+          ) :
+          this.defaultFigure;
    },
+     headerText() {
+       return (this.figure )? this.figure.title : 'No figure selected';
+     },
+     dance(){
+       switch(this.$route.params.dance) {
+         case 'waltz':
+           return this.waltzAll;
+         case 'tango':
+           return this.tangoAll;
+         case 'vwaltz':
+           return this.vwaltzAll;
+         case 'foxtrot':
+           return this.foxtrotAll;
+         case 'quickstep':
+           return this.quickstepAll;
+         default:
+           return null;
+        }
+     },
+    danceList() {
+      switch(this.$route.params.dance) {
+        case 'waltz':
+          return this.waltzLevelList;
+        case 'tango':
+          return this.tangoLevelList;
+        case 'vwaltz':
+          return this.vwaltzLevelList;
+        case 'foxtrot':
+          return this.foxtrotLevelList;
+        case 'quickstep':
+          return this.quickstepLevelList;
+        default:
+          return null;
+      }
+    },
    precedingFigures() {
-     if (this.figureId != undefined) {
-     let currentFigure = this.AllOneList.find(figure => figure.title == this.figure);
-       return this.AllOneList.filter(figure => figure.endFoot == currentFigure.startFoot);
+     if (this.figure != undefined) {
+     // let currentFigure = this.waltzAll.find(figure => figure.title == this.figure);
+       return this.dance.filter(x => x.endFoot == this.figure.startFoot);
+     } else {
+       return undefined;
      }
    },
    followingFigures() {
-     if (this.figureId != undefined) {
-     let currentFigure = this.AllOneList.find(figure => figure.title == this.figure);
-     return this.AllOneList.filter(figure => figure.startFoot == currentFigure.endFoot);
-     }
+     if (this.figure != undefined) {
+     // let currentFigure = this.waltzAll.find(figure => figure.title == this.figure);
+     return this.dance.filter(x => x.startFoot == this.figure.endFoot);
+   } else {
+     return undefined;
+   }
    },
-    All() {
+    waltzLevelList() {
       return [
         {title:'Newcomer', figures: this.waltzNewcomer},
         {title:'Bronze', figures: this.waltzBronze},
@@ -94,8 +135,51 @@ export default {
         {title:'Gold', figures: this.waltzGold},
       ];
     },
-    AllOneList(){
+    waltzAll(){
       return this.waltzNewcomer.concat(this.waltzBronze).concat(this.waltzSilver).concat(this.waltzGold);
+    },
+    tangoLevelList() {
+      return [
+        {title:'Newcomer', figures: this.tangoNewcomer},
+        {title:'Bronze', figures: this.tangoBronze},
+        {title:'Silver', figures: this.tangoSilver},
+        {title:'Gold', figures: this.tangoGold},
+      ];
+    },
+    tangoAll(){
+      return this.tangoNewcomer.concat(this.tangoBronze).concat(this.tangoSilver).concat(this.tangoGold);
+    },
+    vwaltzLevelList() {
+      return [
+        {title:'Bronze', figures: this.vwaltzBronze},
+        {title:'Silver', figures: this.vwaltzSilver},
+        {title:'Gold', figures: this.vwaltzGold},
+      ];
+    },
+    vwaltzAll(){
+      return (this.vwaltzBronze).concat(this.vwaltzSilver).concat(this.vwaltzGold);
+    },
+    foxtrotLevelList() {
+      return [
+        {title:'Newcomer', figures: this.foxtrotNewcomer},
+        {title:'Bronze', figures: this.foxtrotBronze},
+        {title:'Silver', figures: this.foxtrotSilver},
+        {title:'Gold', figures: this.foxtrotGold},
+      ];
+    },
+    foxtrotAll(){
+      return this.foxtrotNewcomer.concat(this.foxtrotBronze).concat(this.foxtrotSilver).concat(this.foxtrotGold);
+    },
+    quickstepLevelList() {
+      return [
+        {title:'Newcomer', figures: this.quickstepNewcomer},
+        {title:'Bronze', figures: this.quickstepBronze},
+        {title:'Silver', figures: this.quickstepSilver},
+        {title:'Gold', figures: this.quickstepGold},
+      ];
+    },
+    quickstepAll(){
+      return this.quickstepNewcomer.concat(this.quickstepBronze).concat(this.quickstepSilver).concat(this.quickstepGold);
     },
 
   }, //Computed
@@ -112,6 +196,45 @@ export default {
       targetNew: ' ',
       targetNext: ' ',
       targetPrev: ' ',
+      defaultFigure: {
+        title: 'Select a figure...',
+        commenceFacing: 0,
+        offset: [0,0],
+        startFoot: 'RFF',
+        endFoot: 'LFF',
+        steps: [
+          {
+            count:0,
+            instructionBoth:'Instructions will appear here',
+            instructionMan:'Begin on LF',
+            instructionLady:'Begin on RF',
+            ml:{
+              transX:0,
+              transY:0,
+              rotation:0,
+              opacity:1,
+            },
+            mr:{
+              transX:0,
+              transY:0,
+              rotation:0,
+              opacity:1,
+            },
+            ll:{
+              transX:0,
+              transY:0,
+              rotation:180,
+              opacity:1,
+            },
+            lr:{
+              transX:0,
+              transY:0,
+              rotation:180,
+              opacity:1,
+            },
+          },
+        ]
+      },
       waltzNewcomer: [
         {
           title: 'RF Closed Change',
@@ -581,7 +704,7 @@ export default {
         {
           title: 'Reverse Turn',
           offset: [0,0],
-          commenceFacing: 45,
+          commenceFacing: 0,
           startFoot: 'LFF',
           endFoot: 'RFB',
           steps: [
@@ -890,6 +1013,133 @@ export default {
           startFoot: 'RFB',
           endFoot: 'LFB',
         },
+      ],
+      tangoNewcomer: [
+        {title: 'Left Foot Walk'},
+        {title: 'Right Foot Walk'},
+        {title: 'Progressive Side Step'},
+        {title: 'Point to PP'},
+        {title: 'Progressive Link'},
+        {title: 'Closed Promenade'},
+        {title: 'Rock Turn'},
+        {title: 'Open Reverse Turn'},
+        {title: 'Back Corte'},
+      ],
+      tangoBronze: [
+        {title: 'Open Promenade'},
+        {title: 'Progressive Side Step Reverse Turn'},
+        {title: 'Left Foot Rock'},
+        {title: 'Right Foot Rock'},
+        {title: 'Natural Twist Turn'},
+        {title: 'Natural Promenade Turn'},
+      ],
+      tangoSilver: [
+        {title: 'Promenade Link'},
+        {title: 'Four Step'},
+        {title: 'Back Open Promenade'},
+        {title: 'Outside Swivel'},
+        {title: 'Reverse Outside Swivel'},
+        {title: 'Fallaway Promenade'},
+        {title: 'Four Step Change'},
+        {title: 'Brush Tap'},
+      ],
+      tangoGold: [
+        {title: 'Fallaway Four Step'},
+        {title: 'Oversway'},
+        {title: 'Basic Reverse Turn'},
+        {title: 'The Chase'},
+        {title: 'Fallaway Reverse & Slip Pivot'},
+        {title: 'Five Step'},
+        {title: 'Overturned Five Step'},
+        {title: 'Contra Check'},
+      ],
+      vwaltzBronze: [
+        {title: 'Reverse Turn'},
+        {title: 'Natural Turn'},
+        {title: 'Forward Change, Natural to Reverse'},
+        {title: 'Forward Change, Reverse to Natural'},
+        {title: 'Backward Change, Natural to Reverse'},
+        {title: 'Backward Change, Reverse to Natural'},
+      ],
+      vwaltzSilver: [
+        {title: 'Reverse Fleckerl'},
+      ],
+      vwaltzGold: [
+        {title: 'Natural Fleckerl'},
+        {title: 'Contra Check'},
+      ],
+      foxtrotNewcomer: [
+        {title: 'Feather Step'},
+        {title: 'Three Step'},
+        {title: 'Natural Turn'},
+        {title: 'Reverse Turn & Feather Finish'},
+        {title: 'Closed Impetus & Feather Finish'},
+      ],
+      foxtrotBronze: [
+        {title: 'Natural Weave'},
+        {title: 'Change of Direction'},
+        {title: 'Basic Weave'},
+      ],
+      foxtrotSilver: [
+        {title: 'Closed Telemark'},
+        {title: 'Open Telemark'},
+        {title: 'Feather Ending'},
+        {title: 'Top Spin'},
+        {title: 'Hover Feather'},
+        {title: 'Hover Telemark'},
+        {title: 'Natural Telemark'},
+        {title: 'Hover Cross'},
+        {title: 'Open Natural Turn'},
+        {title: 'Outside Swivel'},
+        {title: 'Open Impetus'},
+        {title: 'Weave from Promenade Position'},
+        {title: 'Reverse Wave'},
+      ],
+      foxtrotGold: [
+        {title: 'Natural Twist Turn'},
+        {title: 'Curved Feather'},
+        {title: 'Back Feather'},
+        {title: 'Natural Zig Zag from Promenade Position'},
+        {title: 'Fallaway Reverse & Slip Pivot'},
+        {title: 'Natural Hover Telemark'},
+        {title: 'Bounce Fallaway with Weave Ending'},
+      ],
+      quickstepNewcomer: [
+        {title: 'Quarter Turn to Right'},
+        {title: 'Natural Turn'},
+        {title: 'Natural Turn with Hesitation'},
+        {title: 'Natural Pivot Turn'},
+        {title: 'Natural Spin Turn'},
+        {title: 'Progressive Chasse'},
+        {title: 'Chasse Reverse Turn'},
+        {title: 'Forward Lock'},
+      ],
+      quickstepBronze: [
+        {title: 'Closed Impetus'},
+        {title: 'Back Lock'},
+        {title: 'Reverse Pivot'},
+        {title: 'Progressive Chasse to Right'},
+        {title: 'Tipple Chasse to Right'},
+        {title: 'Running Finish'},
+        {title: 'Double Reverse Spin'},
+        {title: 'Cross Chasse'},
+        {title: 'Change of Direction'},
+      ],
+      quickstepSilver: [
+        {title: 'Quick Open Reverse'},
+        {title: 'Fishtail'},
+        {title: 'Running Right Turn'},
+        {title: 'Four Quick Run'},
+        {title: 'V6'},
+        {title: 'Closed Telemark'},
+      ],
+      quickstepGold: [
+        {title: 'Cross Swivel'},
+        {title: 'Six Quick Run'},
+        {title: 'Rumba Cross'},
+        {title: 'Tipsy to Right'},
+        {title: 'Tipsy to Left'},
+        {title: 'Hover Corte'},
       ],
     }
   },

@@ -12,65 +12,65 @@ export default new Router({
       component: Home
     },
     {
-      path: '/waltz',
+      path: '/:dance',
       name: 'waltz',
-      component: () => import('./views/waltz.vue'),
+      component: () => import('./views/dance.vue'),
       children: [
         {
-          path: '/waltz/:figure',
+          path: '/:dance/:figure',
           name: 'waltz-figures',
           component: () => import(`./components/Player.vue`)
         },
       ]
     },
-    {
-      path: '/tango',
-      name: 'tango',
-      component: () => import('./views/tango.vue'),
-      children: [
-        {
-          path: '/tango/:figure',
-          name: 'tango-figures',
-          component: () => import('./components/Player.vue')
-        },
-      ]
-    },
-    {
-      path: '/vwaltz',
-      name: 'vwaltz',
-      component: () => import('./views/vwaltz.vue'),
-      children: [
-        {
-          path: '/vwaltz/:figure',
-          name: 'vwaltz-figures',
-          component: () => import('./components/Player.vue')
-        },
-      ]
-    },
-    {
-      path: '/foxtrot',
-      name: 'foxtrot',
-      component: () => import('./views/foxtrot.vue'),
-      children: [
-        {
-          path: '/foxtrot/:figure',
-          name: 'foxtrot-figures',
-          component: () => import('./components/Player.vue')
-        },
-      ]
-    },
-    {
-      path: '/quickstep',
-      name: 'quickstep',
-      component: () => import('./views/quickstep.vue'),
-      children: [
-        {
-          path: '/quickstep/:figure',
-          name: 'quickstep-figures',
-          component: () => import('./components/Player.vue')
-        },
-      ]
-    },
+    // {
+    //   path: '/tango',
+    //   name: 'tango',
+    //   component: () => import('./views/tango.vue'),
+    //   children: [
+    //     {
+    //       path: '/tango/:figure',
+    //       name: 'tango-figures',
+    //       component: () => import('./components/Player.vue')
+    //     },
+    //   ]
+    // },
+    // {
+    //   path: '/vwaltz',
+    //   name: 'vwaltz',
+    //   component: () => import('./views/vwaltz.vue'),
+    //   children: [
+    //     {
+    //       path: '/vwaltz/:figure',
+    //       name: 'vwaltz-figures',
+    //       component: () => import('./components/Player.vue')
+    //     },
+    //   ]
+    // },
+    // {
+    //   path: '/foxtrot',
+    //   name: 'foxtrot',
+    //   component: () => import('./views/foxtrot.vue'),
+    //   children: [
+    //     {
+    //       path: '/foxtrot/:figure',
+    //       name: 'foxtrot-figures',
+    //       component: () => import('./components/Player.vue')
+    //     },
+    //   ]
+    // },
+    // {
+    //   path: '/quickstep',
+    //   name: 'quickstep',
+    //   component: () => import('./views/quickstep.vue'),
+    //   children: [
+    //     {
+    //       path: '/quickstep/:figure',
+    //       name: 'quickstep-figures',
+    //       component: () => import('./components/Player.vue')
+    //     },
+    //   ]
+    // },
 
   ]
 })

@@ -21,7 +21,7 @@
         </v-btn>
 
         <v-btn icon @click="setLadyOn">
-          <v-icon :color="!man ? 'red' : ''">fa-female</v-icon>
+          <v-icon :color="!man ? '#FF51A6' : ''">fa-female</v-icon>
         </v-btn>
 
         <v-btn icon @click="setBothOn">
@@ -107,7 +107,7 @@
       v-model="step"
     ></v-slider>
     <div class="instruction">
-      <h5 class="headline">{{count}}. {{instruction}}</h5>
+      <h6 class="subheading">{{count}}. {{instruction}}</h6>
     </div>
     <div class="seek">
       <v-btn icon @click="$emit('prevFigure')" >
@@ -140,6 +140,7 @@
 <script>
 export default {
   name: 'Player',
+  props: ['figure'],
   data() {
     return {
       rotation:0,
@@ -213,12 +214,16 @@ export default {
     }
   },
   computed: {
-    figure() {
-      let id = this.$route.params.figure;
-      let searchString = id.replace(/-+/g, ' ');
-      let figure = this.$parent.AllOneList.find(x => x.title == searchString);
-        return figure;
-    },
+    // figure() {
+    //   if (this.$route.params.figure) {
+    //   let id = this.$route.params.figure ;
+    //   let searchString = id.replace(/-+/g, ' ');
+    //   let figure = this.$parent.AllOneList.find(x => x.title == searchString);
+    //     return figure;
+    //   } else {
+    //     return undefined;
+    //   }
+    // },
     count() {
       if (typeof this.figure.steps[this.step].count != 'undefined') {
           return this.figure.steps[this.step].count;
@@ -356,9 +361,11 @@ export default {
 }
 .controls {
   width:100%;
-  height:200px;
-  background-color:#E5E5E5;
-  border:1px solid gray;
+  height:130px;
+  background-color:#ECEFF1;
+  position:fixed;
+  bottom:0px;
+  box-shadow: 0px -2px 4px 0px rgba(0,0,0,0.5);
 }
 
 
@@ -371,9 +378,8 @@ export default {
 }
 
 .instruction {
-  padding:16px;
+  padding-top:16px;
   text-align:center;
-  font-size:32px;
 }
 
 .slider {
@@ -407,7 +413,7 @@ export default {
 }
 .contents {
   position:relative;
-  border:1px solid black;
+  /* border:1px solid black; */
   height:360px;
   width:360px;
   /* border:1px dotted gray; */

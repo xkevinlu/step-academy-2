@@ -14,7 +14,7 @@
           </v-list-tile-avatar>
 
           <v-list-tile-content>
-            <v-list-tile-title>John Leider</v-list-tile-title>
+            <v-list-tile-title>Step Academy</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -42,13 +42,13 @@
       <v-toolbar app dark color="primary">
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
 
-        <v-toolbar-title class="white--text">Step Academy</v-toolbar-title>
+        <v-toolbar-title class="white--text">{{subheaderText}}</v-toolbar-title>
 
         <v-spacer></v-spacer>
 
-        <v-btn icon>
+        <!-- <v-btn icon>
           <v-icon>more_vert</v-icon>
-        </v-btn>
+        </v-btn> -->
       </v-toolbar>
 
 
@@ -62,6 +62,24 @@
 <script>
 export default {
   name: 'App',
+  computed: {
+    subheaderText() {
+      switch(this.$route.params.dance) {
+        case 'waltz':
+          return 'Slow Waltz';
+        case 'tango':
+          return 'Tango';
+        case 'vwaltz':
+          return 'Viennese Waltz';
+        case 'foxtrot':
+          return 'Slow Foxtrot';
+        case 'quickstep':
+          return 'Quickstep';
+        default:
+          return 'Home';
+      }
+    },
+  },
   data () {
     return {
       drawer: null,
