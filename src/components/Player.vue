@@ -170,7 +170,7 @@ export default {
     },
     play() {
         this.isPlaying = !this.isPlaying;
-        if (this.step == this.maxStep) {
+        if ((this.step == this.maxStep) && (!this.isPlaying)) {
           this.step = 0;
           this.playTimer = setInterval(this.next, 1500);
         } else if (this.isPlaying) {
@@ -210,20 +210,12 @@ export default {
         rotation: (data.rotation != undefined) ? data.rotation : 0,
         op: (data.opacity != undefined) ? data.opacity : 1,
         origin: (data.transOrigin != undefined) ? data.transOrigin : "center 40px",
+        transition: (data.transition != undefined) ? data.transition : "all 1.5s",
+
       }
     }
   },
   computed: {
-    // figure() {
-    //   if (this.$route.params.figure) {
-    //   let id = this.$route.params.figure ;
-    //   let searchString = id.replace(/-+/g, ' ');
-    //   let figure = this.$parent.AllOneList.find(x => x.title == searchString);
-    //     return figure;
-    //   } else {
-    //     return undefined;
-    //   }
-    // },
     count() {
       if (typeof this.figure.steps[this.step].count != 'undefined') {
           return this.figure.steps[this.step].count;
@@ -248,6 +240,7 @@ export default {
           transform: `translate(${foot.x}px, ${foot.y}px) rotate(${foot.rotation}deg)`,
           opacity: foot.op,
           transformOrigin: foot.origin,
+          transition: foot.transition,
         };
       } else {
         return null
@@ -260,6 +253,7 @@ export default {
           transform: `translate(${foot.x}px, ${foot.y}px) rotate(${foot.rotation}deg)`,
           opacity: foot.op,
           transformOrigin: foot.origin,
+          transition: foot.transition,
         };
       } else {
         return null
@@ -273,6 +267,7 @@ export default {
           transform: `translate(${foot.x}px, ${foot.y}px) rotate(${foot.rotation}deg)`,
           opacity: foot.op,
           transformOrigin: foot.origin,
+          transition: foot.transition,
         };
       } else {
         return null
@@ -285,6 +280,7 @@ export default {
           transform: `translate(${foot.x}px, ${foot.y}px) rotate(${foot.rotation}deg)`,
           opacity: foot.op,
           transformOrigin: foot.origin,
+          transition: foot.transition,
         };
       } else {
         return null
@@ -357,7 +353,7 @@ export default {
 .top-controls {
   display:flex;
   justify-content:space-around;
-  margin-bottom:30px;
+  margin-bottom:0px;
 }
 .controls {
   width:100%;
@@ -406,17 +402,15 @@ export default {
 
 .player {
   width:100%;
-  height:300px;
   position:relative;
-  overflow:hidden;
-  overflow-x:scroll;
+  overflow:scroll;
+  /* border:1px solid black; */
 }
 .contents {
   position:relative;
   /* border:1px solid black; */
   height:360px;
   width:360px;
-  /* border:1px dotted gray; */
   margin-left:auto;
   margin-right:auto;
 }
@@ -471,19 +465,19 @@ export default {
 .ml {
   position: absolute;
   left: 30%;
-  top: 45%;
+  top: 42%;
 }
 
 .mr {
   position: absolute;
   left:38%;
-  top:45%;
+  top:42%;
 }
 
 .ll {
   position: absolute;
   left:42%;
-  top:40%;
+  top:38%;
   transform:rotate(180deg);
 
 }
@@ -491,14 +485,8 @@ export default {
 .lr {
   position: absolute;
   left: 34%;
-  top: 40%;
+  top: 38%;
   transform:rotate(180deg);
-}
-
-.moveUp {
-  transform: translate(0, -80px);
-  top:20px;
-  left:20px;
 }
 
 </style>
