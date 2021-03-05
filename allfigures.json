@@ -1,0 +1,437 @@
+{
+    "Waltz": {
+        "Newcomer": {
+            "RF_Closed_Change": {
+                "name": "RF Closed Change"
+            },
+            "LF_Closed_Change": {
+                "name": "LF Closed Change"
+            },
+            "Natural_Turn": {
+                "name": "Natural Turn"
+            },
+            "Reverse_Turn": {
+                "name": "Reverse Turn"
+            },
+            "Natural_Spin_Turn": {
+                "name": "Natural Spin Turn"
+            },
+            "Whisk": {
+                "name": "Whisk"
+            },
+            "Chasse_from_Promenade_Position": {
+                "name": "Chasse from Promenade Position"
+            }
+        },
+        "Bronze": {
+            "Closed_Impetus": {
+                "name": "Closed Impetus"
+            },
+            "Hestitation_Change": {
+                "name": "Hestitation Change"
+            },
+            "Outside_Change": {
+                "name": "Outside Change"
+            },
+            "Reverse_Corte": {
+                "name": "Reverse Corte"
+            },
+            "Back_Whisk": {
+                "name": "Back Whisk"
+            },
+            "Basic_Weave": {
+                "name": "Basic Weave"
+            },
+            "Double_Reverse_Spin": {
+                "name": "Double Reverse Spin"
+            },
+            "Reverse_Pivot": {
+                "name": "Reverse Pivot"
+            },
+            "Back_Lock": {
+                "name": "Back Lock"
+            },
+            "Progressive_Chasse_to_Right": {
+                "name": "Progressive Chasse to Right"
+            }
+        },
+        "Silver": {
+            "Weave_from_Promenade_Position": {
+                "name": "Weave from Promenade Position"
+            },
+            "Closed_Telemark": {
+                "name": "Closed Telemark"
+            },
+            "Open_Telemark": {
+                "name": "Open Telemark"
+            },
+            "Open_Impetus": {
+                "name": "Open Impetus"
+            },
+            "Cross_Hesitation": {
+                "name": "Cross Hesitation"
+            },
+            "Wing": {
+                "name": "Wing"
+            },
+            "Outside_Spin": {
+                "name": "Outside Spin"
+            },
+            "Turning Lock_to_L": {
+                "name": "Turning Lock to L"
+            },
+            "Drag_Hesitation": {
+                "name": "Drag Hesitation"
+            }
+        },
+        "Gold": {
+            "Left_Whisk": {
+                "name": "Left Whisk"
+            },
+            "Contra_Check": {
+                "name": "Contra Check"
+            },
+            "Closed_Wing": {
+                "name": "Closed Wing"
+            },
+            "Turning_Lock_to_Right": {
+                "name": "Turning Lock to Right"
+            },
+            "Fallaway_Reverse_Slip_Pivot": {
+                "name": "Fallaway Reverse & Slip Pivot"
+            },
+            "Hover_Corte": {
+                "name": "Hover Corte"
+            }
+        }
+    },
+    "Tango": {
+        "Newcomer": {
+            "Left_Foot_Walk": {
+                "name": "Left Foot Walk"
+            },
+            "Right_Foot_Walk": {
+                "name": "Right Foot Walk"
+            },
+            "Progressive_Side_Step": {
+                "name": "Progressive Side Step"
+            },
+            "Point_to_PP": {
+                "name": "Point to PP"
+            },
+            "Progressive_Link": {
+                "name": "Progressive Link"
+            },
+            "Closed_Promenade": {
+                "name": "Closed Promenade"
+            },
+            "Rock_Turn": {
+                "name": "Rock Turn"
+            },
+            "Open_Reverse_Turn": {
+                "name": "Open Reverse Turn"
+            },
+            "Back_Corte": {
+                "name": "Back Corte"
+            }
+        },
+        "Bronze": {
+            "Open_Promenade": {
+                "name": "Open Promenade"
+            },
+            "Progressive_Side_Step_Reverse_Turn": {
+                "name": "Progressive Side Step Reverse Turn"
+            },
+            "Left_Foot_Rock": {
+                "name": "Left Foot Rock"
+            },
+            "Right_Foot_Rock": {
+                "name": "Right Foot Rock"
+            },
+            "Natural_Twist_Turn": {
+                "name": "Natural Twist Turn"
+            },
+            "Natural_Promenade_Turn": {
+                "name": "Natural Promenade Turn"
+            }
+        },
+        "Silver": {
+            "Promenade_Link": {
+                "name": "Promenade Link"
+            },
+            "Four_Step": {
+                "name": "Four Step"
+            },
+            "Back_Open_Promenade": {
+                "name": "Back Open Promenade"
+            },
+            "Outside_Swivel": {
+                "name": "Outside Swivel"
+            },
+            "Reverse_Outside_Swivel": {
+                "name": "Reverse Outside Swivel"
+            },
+            "Fallaway_Promenade": {
+                "name": "Fallaway Promenade"
+            },
+            "Four_Step_Change": {
+                "name": "Four Step Change"
+            },
+            "Brush_Tap": {
+                "name": "Brush Tap"
+            }
+        },
+        "Gold": {
+            "Fallaway_Four_Step": {
+                "name": "Fallaway Four Step"
+            },
+            "Oversway": {
+                "name": "Oversway"
+            },
+            "Basic_Reverse_Turn": {
+                "name": "Basic Reverse Turn"
+            },
+            "The_Chase": {
+                "name": "The Chase"
+            },
+            "Fallaway_Reverse_Slip_Pivot": {
+                "name": "Fallaway Reverse & Slip Pivot"
+            },
+            "Five_Step": {
+                "name": "Five Step"
+            },
+            "Overturned_Five_Step": {
+                "name": "Overturned Five Step"
+            },
+            "Contra_Check": {
+                "name": "Contra Check"
+            }
+        }
+    },
+    "Viennese Waltz": {
+        "Bronze": {
+            "Reverse_Turn": {
+                "name": "Reverse Turn"
+            },
+            "Natural_Turn": {
+                "name": "Natural Turn"
+            },
+            "Forward_Change_Natural_to_Reverse": {
+                "name": "Forward Change, Natural to Reverse"
+            },
+            "Forward_Change_Reverse_to_Natural": {
+                "name": "Forward Change, Reverse to Natural"
+            },
+            "Backward_Change_Natural_to_Reverse": {
+                "name": "Backward Change, Natural to Reverse"
+            },
+            "Backward_Change Reverse_to_Natural": {
+                "name": "Backward Change, Reverse to Natural"
+            }
+        },
+        "Silver": {
+            "Reverse_Fleckerl": {
+                "name": "Reverse Fleckerl"
+            }
+        },
+        "Gold": {
+            "Natural_Fleckerl": {
+                "name": "Natural Fleckerl"
+            },
+            "Contra_Check": {
+                "name": "Contra Check"
+            }
+        }
+    },
+    "Foxtrot": {
+        "Newcomer": {
+            "Feather_Step":{
+                "name": "Feather Step"
+            },
+            "Three_Step":{
+                "name": "Three Step"
+            },
+            "Natural_Turn":{
+                "name": "Natural Turn"
+            },
+            "Reverse_Turn_Feather_Finish":{
+                "name": "Reverse Turn & Feather Finish"
+            },
+            "Closed_Impetus_Feather_Finish":{
+                "name": "Closed Impetus & Feather Finish"
+            }
+        },
+        "Bronze": {
+            "Natural_Weave":{
+                "name": "Natural Weave"
+            },
+            "Change_of_Direction":{
+                "name": "Change of Direction"
+            },
+            "Basic_Weave":{
+                "name": "Basic Weave"
+            }
+        },
+        "Silver": {
+            "Closed_Telemark":{
+                "name": "Closed Telemark"
+            },
+            "Open_Telemark":{
+                "name": "Open Telemark"
+            },
+            "Feather_Ending":{
+                "name": "Feather Ending"
+            },
+            "Top_Spin":{
+                "name": "Top Spin"
+            },
+            "Hover_Feather":{
+                "name": "Hover Feather"
+            },
+            "Hover_Telemark":{
+                "name": "Hover Telemark"
+            },
+            "Natural_Telemark":{
+                "name": "Natural Telemark"
+            },
+            "Hover_Cross":{
+                "name": "Hover Cross"
+            },
+            "Open_Natural_Spin":{
+                "name": "Open Natural Turn"
+            },
+            "Outside_Swivel":{
+                "name": "Outside Swivel"
+            },
+            "Open_Impetus":{
+                "name": "Open Impetus"
+            },
+            "Weave_from_Promenade_Position":{
+                "name": "Weave from Promenade Position"
+            },
+            "Reverse_Wave":{
+                "name": "Reverse Wave"
+            }
+        },
+        "Gold": {
+            "Natural_Twist_Turn":{
+                "name": "Natural Twist Turn"
+            },
+            "Curved_Feather":{
+                "name": "Curved Feather"
+            },
+            "Back_Feather":{
+                "name": "Back Feather"
+            },
+            "Natural_Zig_Zag_from_Promenade_Position":{
+                "name": "Natural Zig Zag from Promenade Position"
+            },
+            "Fallaway_Reverse_Slip_Pivot":{
+                "name": "Fallaway Reverse & Slip Pivot"
+            },
+            "Natural_Hover_Telemark":{
+                "name": "Natural Hover Telemark"
+            },
+            "Bounce_Fallaway_with_Weave_Ending":{
+                "name": "Bounce Fallaway with Weave Ending"
+            }
+        }
+    },
+    "Quickstep": {
+        "Newcomer": {
+            "Quarter_Turn_to_Right":{
+                "name": "Quarter Turn to Right"
+            },
+            "Natural_Turn":{
+                "name": "Natural Turn"
+            },
+            "Natural_Turn_with_Hesitation":{
+                "name": "Natural Turn with Hesitation"
+            },
+            "Natural_Pivot_Turn":{
+                "name": "Natural Pivot Turn"
+            },
+            "Natural_Spin_Turn":{
+                "name": "Natural Spin Turn"
+            },
+            "Progressive_Chasse":{
+                "name": "Progressive Chasse"
+            },
+            "Chasse_Reverse_Turn":{
+                "name": "Chasse Reverse Turn"
+            },
+            "Forward_Lock":{
+                "name": "Forward Lock"
+            }
+        },
+        "Bronze": {
+            "Closed_Impetus":{
+                "name": "Closed Impetus"
+            },
+            "Back_Lock":{
+                "name": "Back Lock"
+            },
+            "Reverse_Pivot":{
+                "name": "Reverse Pivot"
+            },
+            "Progressive_Chasse_to_Right":{
+                "name": "Progressive Chasse to Right"
+            },
+            "Tipple_Chasse_to_Right":{
+                "name": "Tipple Chasse to Right"
+            },
+            "Running_Finish":{
+                "name": "Running Finish"
+            },
+            "Double_Reverse_Spin":{
+                "name": "Double Reverse Spin"
+            },
+            "Cross_Chasse":{
+                "name": "Cross Chasse"
+            },
+            "Change_of_Direction":{
+                "name": "Change of Direction"
+            }
+        },
+        "Silver": {
+            "Quick_Open_Reverse":{
+                "name": "Quick Open Reverse"
+            },
+            "Fishtail":{
+                "name": "Fishtail"
+            },
+            "Running_Right_Turn":{
+                "name": "Running Right Turn"
+            },
+            "Four_Quick_Run":{
+                "name": "Four Quick Run"
+            },
+            "V6":{
+                "name": "V6"
+            },
+            "Closed_Telemark":{
+                "name": "Closed Telemark"
+            }
+        },
+        "Gold": {
+            "Cross_Swivel":{
+                "name": "Cross Swivel"
+            },
+            "Six_Quick_Run":{
+                "name": "Six Quick Run"
+            },
+            "Rumba_Cross":{
+                "name": "Rumba Cross"
+            },
+            "Tipsy_to_Right":{
+                "name": "Tipsy to Right"
+            },
+            "Tipsy_to_Left":{
+                "name": "Tipsy to Left"
+            },
+            "Hover_Corte":{
+                "name": "Hover Corte"
+            }
+        }
+    }
+}
